@@ -20,10 +20,10 @@ app.get("/add", (req, res) => {
     };
 
     res.status(200).json({
-        operator : "+",
+        "operator" : "+",
         a,
         b,
-        result : a + b,
+        "result" : a + b,
     });
 });
 
@@ -39,12 +39,37 @@ app.get("/subtract", (req, res) => {
     };
 
     res.status(200).json({
-        operator : "-",
+        "operator" : "-",
         a,
         b,
-        result : a - b,
+        "result" : a - b,
     });
 });
+
+app.get("/info", (req, res) => {
+    res.status(200).json({
+        endpoints : [
+            {
+                "nameEndpoint" : "Add",
+                "path" : "/add",
+                "description" : "Add two numbers",
+                "params" : {
+                    "a" : "Number",
+                    "b" : "Number"
+                }
+            },
+            {
+                "nameEndpoint" : "Subtract",
+                "path" : "/subtract",
+                "description" : "Subtract two numbers",
+                "params" : {
+                    "a" : "Number",
+                    "b" : "Number"
+                }
+            },
+        ]
+    })
+})
 
 app.listen(3000, () => {
     console.log("Server is running on http://localhost:3000");
